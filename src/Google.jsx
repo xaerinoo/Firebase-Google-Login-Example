@@ -1,4 +1,4 @@
-import { browserSessionPersistence, setPersistence, signInWithPopup, signInWithRedirect } from 'firebase/auth';
+import { signInWithRedirect } from 'firebase/auth';
 import styled from 'styled-components';
 import { auth, provider } from './firebase';
 
@@ -11,9 +11,7 @@ const Google = ({
 
   const handleLogin = async () => {
     try {
-      await setPersistence(auth, browserSessionPersistence);    // 브라우저를 닫으면 로그인 상태가 사라지고 다시 접속하면 로그인 버튼(첫 화면)부터 보이게 됨
       await signInWithRedirect(auth, provider);
-      console.log("로그인 성공");
     } catch (error) {
       console.error("로그인 실패");
     }
